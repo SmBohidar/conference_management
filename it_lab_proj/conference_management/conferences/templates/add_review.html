@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Review</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="conference">Select Conference:</label>
+        <select id="conference" name="conference">
+            {% for conference in conferences %}
+                <option value="{{ conference.id }}">{{ conference.title }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="review">Write Review:</label>
+        <textarea id="review" name="review" rows="6" placeholder="Write your review here..."></textarea>
+
+        <button type="submit">Submit Review</button>
+    </form>
+</body>
+</html>
